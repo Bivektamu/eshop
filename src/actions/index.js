@@ -1,4 +1,5 @@
 import jsonApi from '../api/jsonApi';
+import history from '../history';
 
 export const fetchProducts = () => async(dispatch) => {
     const response = await jsonApi.get('?albumId=1');
@@ -16,6 +17,8 @@ export const clickedProduct = () => async(dispatch) => {
         type: 'CLICKED_PRODUCT',
         payload: response.data
     });
+
+    history.push('/product/');
 
 
 }

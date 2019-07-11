@@ -53,7 +53,6 @@ class ProductList extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    // console.log(state);
     return {
         products :  state.products,
         clickedProduct : clickedProduct
