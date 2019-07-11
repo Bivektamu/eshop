@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import productReducer from '../';
+import reducer from './reducer/index';
 
 const store=createStore(reducer);
 ReactDOM.render(
