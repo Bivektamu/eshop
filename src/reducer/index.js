@@ -1,20 +1,27 @@
 import {combineReducers} from 'redux';
-import axios from 'axios';
 
-const products = axios.get('https://jsonplaceholder.typicode.com/photos')
-                .then(res => {
-                    return res.data
-                });
+const productsReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'FETCH_PRODUCTS':
+            return action.payload;
 
-console.log(products);
+        default:
+            return state;
+    }
+};
 
+const clickedProduct = (state = [], action) => {
+    switch(action.type) {
+        case 'CLICKED_PRODUCT':
+            return [...state, action.payload];
 
-const productReducer = () => {
-    return [
-        products
-    ]
-}
+        default:
+            return state;
+    }
+};
+
 
 export default combineReducers({
-    products: productReducer,
+    products: productsReducer,
+    clickedProduct : clickedProduct,
 });

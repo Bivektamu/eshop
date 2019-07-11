@@ -1,10 +1,21 @@
+import jsonApi from '../api/jsonApi';
 
-const SelectedProduct = (product=null) => {
-    return{
-    type:'SELECTED_PRODUCT',
-    payload: product,
-    }
-
+export const fetchProducts = () => async(dispatch) => {
+    const response = await jsonApi.get('?albumId=1');
+    dispatch({
+        type: 'FETCH_PRODUCTS',
+        payload: response.data
+    });
 }
 
-export default SelectedProduct;
+
+export const clickedProduct = () => async(dispatch) => {
+    const response = await jsonApi.get('?id=1');
+    console.log(response.data);
+    dispatch({
+        type: 'CLICKED_PRODUCT',
+        payload: response.data
+    });
+
+
+}

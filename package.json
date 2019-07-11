@@ -10,6 +10,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.2"
   },
   "scripts": {
@@ -32,5 +33,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bivektamu/eshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bivektamu/eshop/issues"
+  },
+  "homepage": "https://github.com/Bivektamu/eshop#readme"
 }
