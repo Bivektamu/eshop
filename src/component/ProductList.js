@@ -29,6 +29,7 @@ class ProductList extends React.Component {
                     )
                 }
         );
+        
 
         return product;
 
