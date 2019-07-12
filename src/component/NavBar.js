@@ -12,7 +12,7 @@ class NavBar extends React.Component {
                     </Logo>
                 </Link>
                 <Link to="/">Products</Link>
-                <Link to="/carts">My carts</Link>
+                <Link to="/cart/">My cart</Link>
             </nav>
         )
     }
