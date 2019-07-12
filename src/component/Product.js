@@ -2,18 +2,18 @@ import React from 'react';
 import {connect} from 'react-redux'
 
 class Product extends React.Component {
-    componentDidMount() {
-        console.log(this.props);
-    }
+    
     render() {
 
-        if(!this.props.clickedProduct) {
+        if(!this.props.clickedProduct[0]) {
             return <div>Loading</div>;
         }
-
-        return(
+        console.log(this.props.clickedProduct[0]);
+        const {url, title} = (this.props.clickedProduct[0]);
+        return (
             <div>
-                <img src={this.props.clickedProduct.url} alt={this.props.clickedProduct.title} />
+                <img src={url} alt={title} />
+                <p>{title}</p>
             </div>
         )
     }

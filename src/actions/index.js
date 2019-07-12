@@ -10,15 +10,27 @@ export const fetchProducts = () => async(dispatch) => {
 }
 
 
-export const clickedProduct = () => async(dispatch) => {
-    const response = await jsonApi.get('?id=1');
-    console.log(response.data);
+export const clickedProduct = (id) => async(dispatch) => {
+    const response = await jsonApi.get(`?id=${id}`);
     dispatch({
         type: 'CLICKED_PRODUCT',
         payload: response.data
     });
 
     history.push('/product/');
+}
 
+export const addToCart = (id) => async (dispatch) => {
+    const response = await jsonApi.get(`?id=${id}`);
+    dispatch({
+            type: 'ADD_TO_CART',
+            payload: response.data[0]
+    });
+}
 
+export const removeFromCart = (id) => {
+    return {
+        type: 'REMOVE_FROM_CART',
+        payload: id
+    }
 }

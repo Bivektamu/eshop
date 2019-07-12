@@ -1,29 +1,31 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {fetchProducts} from '../actions'
-import {clickedProduct} from '../actions'
-import {Link} from 'react-router-dom';
+import {fetchProducts, clickedProduct, addToCart} from '../actions'
+import { NONAME } from 'dns';
 class ProductList extends React.Component {
 
     componentDidMount() {
         this.props.fetchProducts();
-        
     }
 
-    onProductClick = () => {
-        this.props.clickedProduct();
-        
+    onProductClick = (id) => {
+        this.props.clickedProduct(id);
+    }
+
+    addToCartClick = (id) => {
+        this.props.addToCart(id);
     }
 
     renderImg ()  {
 
         const product = this.props.products.map((product) => {
+            var bool = (this.props.cartProductsId.includes(product.id)) ? 'none' : '';
                 return(
                     <div key={product.id}>
                         <p>{product.title}</p>
-                        <Link to='/product/'>
-                            <img onClick = { this.onProductClick }  src={product.url} alt={product.title} />
-                        </Link>
+                        <img onClick = { () => this.onProductClick(product.id) }  src={product.url} alt={product.title} />
+
+                        <span onClick={() => this.addToCartClick(product.id)} style={{display: bool} }>add to cart</span>
                         
                     </div>
                     )
@@ -42,6 +44,7 @@ class ProductList extends React.Component {
             return 'Loading';
         }
 
+
         return(
             <div>
                 <h1>
@@ -56,8 +59,12 @@ class ProductList extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         products :  state.products,
-        clickedProduct : clickedProduct
+        clickedProduct : clickedProduct,
+        cartProductsId : state.cart.map(cartProduct => {
+            return cartProduct.id
+        })
+        
     }
 }
 
-export default connect(mapStateToProps, {fetchProducts, clickedProduct})(ProductList);
+export default connect(mapStateToProps, {fetchProducts, clickedProduct, addToCart})(ProductList);
