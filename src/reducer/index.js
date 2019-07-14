@@ -4,37 +4,42 @@ import _ from 'lodash';
 const productsReducer = (state = [], action) => {
     switch (action.type) {
         case 'FETCH_PRODUCTS':
-            return action.payload;
+            // return action.payload;
+            return {...state, ..._.mapKeys(action.payload, 'id') };
+
 
         default:
-            return state;
+            return {state};
     }
 };
 
 const clickedProduct = (state = [], action) => {
     switch(action.type) {
         case 'CLICKED_PRODUCT':
-            return  action.payload;
+            return  {...state.clickedProduct, [action.payload.id] : action.payload};
 
         default:
-            return state;
+            return {state};
     }
 };
 
 const cart = (state = [], action) => {
+
     switch (action.type) {
         case 'ADD_TO_CART':
-            return [...state, action.payload]
+            // return {...state.cart, [action.payload.id] : action.payload}
+            return {state};
 
 
         case 'REMOVE_FROM_CART':
-            const a =_.omit(state, action.payload); 
-            console.log(a)
-            return state;
+            // _.pick(state, pro);
+           
+
+            return {state};
 
 
         default:
-            return state;
+            return {state};
     }
 
 }

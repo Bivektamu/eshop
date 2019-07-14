@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {fetchProducts, clickedProduct, addToCart} from '../actions'
-import { NONAME } from 'dns';
 class ProductList extends React.Component {
 
     componentDidMount() {
@@ -9,6 +8,7 @@ class ProductList extends React.Component {
     }
 
     onProductClick = (id) => {
+        console.log(id);
         this.props.clickedProduct(id);
     }
 
@@ -16,16 +16,15 @@ class ProductList extends React.Component {
         this.props.addToCart(id);
     }
 
-    renderImg ()  {
+    renderProduct ()  {
 
-        const product = this.props.products.map((product) => {
-            var bool = (this.props.cartProductsId.includes(product.id)) ? 'none' : '';
+        const product = this.props.products.map(product => {
                 return(
                     <div key={product.id}>
+                        <img onClick = { () => this.onProductClick(product.id) }  src={product.img} alt={product.title} />
                         <p>{product.title}</p>
-                        <img onClick = { () => this.onProductClick(product.id) }  src={product.url} alt={product.title} />
 
-                        <span onClick={() => this.addToCartClick(product.id)} style={{display: bool} }>add to cart</span>
+                        <button onClick={() => this.addToCartClick(product.id)} >add to cart</button>
                         
                     </div>
                     )
@@ -44,25 +43,23 @@ class ProductList extends React.Component {
             return 'Loading';
         }
 
+        console.log(this.props.products);
+
 
         return(
             <div>
-                <h1>
-                    image src
-                </h1>
-                <div>{this.renderImg()}</div>
+                <h1>Phone Shop</h1>
+                <div>{this.renderProduct()}</div>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
-        products :  state.products,
+        products : Object.values(state.products),
         clickedProduct : clickedProduct,
-        cartProductsId : state.cart.map(cartProduct => {
-            return cartProduct.id
-        })
+        
         
     }
 }

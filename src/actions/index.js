@@ -1,30 +1,33 @@
 import jsonApi from '../api/jsonApi';
 import history from '../history';
+import {storeProducts} from '../api/data';
+import _ from 'lodash';
 
-export const fetchProducts = () => async(dispatch) => {
-    const response = await jsonApi.get('?albumId=1');
+
+console.log();
+export const fetchProducts = () => (dispatch) => {
     dispatch({
         type: 'FETCH_PRODUCTS',
-        payload: response.data
+        payload: storeProducts
     });
 }
 
 
-export const clickedProduct = (id) => async(dispatch) => {
-    const response = await jsonApi.get(`?id=${id}`);
+export const clickedProduct = (id) => (dispatch) => {
+    const product = _.filter(storeProducts, { 'id':id});
     dispatch({
         type: 'CLICKED_PRODUCT',
-        payload: response.data
+        payload: product[0]
     });
 
     history.push('/product/');
 }
 
-export const addToCart = (id) => async (dispatch) => {
-    const response = await jsonApi.get(`?id=${id}`);
+export const addToCart = (id) => (dispatch) => {
+    const product = _.filter(storeProducts, { 'id':id});
     dispatch({
-            type: 'ADD_TO_CART',
-            payload: response.data[0]
+        type: 'ADD_TO_CART',
+        payload: product[0]
     });
 }
 

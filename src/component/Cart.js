@@ -13,13 +13,15 @@ class Cart extends React.Component {
     }
 
     renderProduct = () => {
-        const product = this.props.productsInCart.map(product => {
-            var {id, title, url} = product;
+        const a = (this.props.productsInCart);
+        console.log(a);
+        const product = a.map((product) => {
+            var {id, title, img} = product;
             return (
                 <div key={id}>  
                     <p>quantity: <span></span></p>
                     <p>{title}</p>
-                    <img src={url} />
+                    <img src={img} alt={title} />
                     <button onClick={() => this.onRemoveBtnClick(id)}>remove from cart</button>
                 </div>
             )
@@ -33,7 +35,6 @@ class Cart extends React.Component {
         if(!this.props.productsInCart) {
             return <div>loading</div>
         }
-        
         return (
             <div>
                 {this.renderProduct()}
@@ -43,7 +44,7 @@ class Cart extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        productsInCart : state.cart
+        productsInCart : Object.values(state.cart)
     }
 }
 
