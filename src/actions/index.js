@@ -4,7 +4,6 @@ import {storeProducts} from '../api/data';
 import _ from 'lodash';
 
 
-console.log();
 export const fetchProducts = () => (dispatch) => {
     dispatch({
         type: 'FETCH_PRODUCTS',
@@ -25,6 +24,7 @@ export const clickedProduct = (id) => (dispatch) => {
 
 export const addToCart = (id) => (dispatch) => {
     const product = _.filter(storeProducts, { 'id':id});
+    
     dispatch({
         type: 'ADD_TO_CART',
         payload: product[0]

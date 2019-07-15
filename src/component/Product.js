@@ -24,7 +24,6 @@ class Product extends React.Component {
 }
 
 const mapStatetoProps = (state) => {
-    // console.log(state.clickedProduct);
     return {
         clickedProduct : Object.values(state.clickedProduct),
     }

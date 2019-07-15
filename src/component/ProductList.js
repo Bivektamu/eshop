@@ -6,18 +6,21 @@ class ProductList extends React.Component {
     componentDidMount() {
         this.props.fetchProducts();
     }
+    componentWillMount() {
+        this.props.fetchProducts();
+
+    }
 
     onProductClick = (id) => {
-        console.log(id);
         this.props.clickedProduct(id);
     }
 
     addToCartClick = (id) => {
-        this.props.addToCart(id);
+       return this.props.addToCart(id);
     }
 
     renderProduct ()  {
-
+console.log(this.props.products);
         const product = this.props.products.map(product => {
                 return(
                     <div key={product.id}>
@@ -43,7 +46,6 @@ class ProductList extends React.Component {
             return 'Loading';
         }
 
-        console.log(this.props.products);
 
 
         return(
@@ -57,7 +59,7 @@ class ProductList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        products : Object.values(state.products),
+        products : state.products,
         clickedProduct : clickedProduct,
         
         
