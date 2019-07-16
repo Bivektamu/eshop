@@ -10,26 +10,19 @@ export const fetchProducts = () => (dispatch) => {
     });
 }
 
-
-export const clickedProduct = (id) => (dispatch) => {
-    const product = _.filter(storeProducts, { 'id':id});
-    dispatch({
-        type: 'CLICKED_PRODUCT',
-        payload: product[0]
-    });
-
-    history.push('/product/');
-}
-
-export const addToCart = (id) => (dispatch) => {
-    const product = _.filter(storeProducts, { 'id':id});
-
-    product[0].count++;
+export const addToCart = (id)  => {
     
-    dispatch({
+    var productFound;
+    storeProducts.map((product) => {
+        if(id === product.id){
+             productFound =  product;
+        }
+    })
+
+    return {
         type: 'ADD_TO_CART',
-        payload: product[0]
-    });
+        payload: productFound
+    }
 }
 
 export const removeFromCart = (id) => {

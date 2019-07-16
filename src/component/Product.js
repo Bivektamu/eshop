@@ -9,8 +9,8 @@ class Product extends React.Component {
             return <div>Loading</div>;
         }
 
-        console.log(this.props.clickedProduct[0]);
-        const {id, company, info, price,title, img} = (this.props.clickedProduct[0]);
+        console.log(this.props.clickedProduct);
+        const {id, company, info, price,title, img} = (this.props.clickedProduct);
         return (
             <div key={id}>
                 <p>{company}</p>
@@ -23,9 +23,10 @@ class Product extends React.Component {
     }
 }
 
-const mapStatetoProps = (state) => {
+const mapStatetoProps = (state, ownProps) => {
+    console.log(ownProps);
     return {
-        clickedProduct : Object.values(state.clickedProduct),
+        clickedProduct : state.products[ownProps.match.params.id]
     }
 }
 

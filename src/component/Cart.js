@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addToCart, removeFromCart} from '../actions'
+import {removeFromCart} from '../actions'
 
 class Cart extends React.Component {
     componentDidMount() {
         // this.props.clickedProduct(this.props.productsInCartId);
+
     }
 
 
@@ -49,9 +50,10 @@ class Cart extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.cart);
     return {
         productsInCart : Object.values(state.cart)
     }
 }
 
-export default connect(mapStateToProps, {addToCart, removeFromCart}) (Cart);
+export default connect(mapStateToProps, {removeFromCart}) (Cart);
