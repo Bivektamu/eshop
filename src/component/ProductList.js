@@ -20,7 +20,6 @@ class ProductList extends React.Component {
     }
 
     renderProduct ()  {
-console.log(this.props.products);
         const product = this.props.products.map(product => {
                 return(
                     <div key={product.id}>

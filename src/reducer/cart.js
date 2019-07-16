@@ -1,13 +1,17 @@
+import _ from 'lodash';
 export const cart = (state = {}, action) => {
 
     switch (action.type) {
         case 'ADD_TO_CART':
-            state[action.payload.id] = action.payload
-            return {state}
+            return {...state,  [action.payload.id]:action.payload};
 
         case 'REMOVE_FROM_CART':
-            return {state};
+            state = _.omit(state, [action.payload]);
 
+            console.log(state);
+           
+
+            return {...state, state};
 
         default:
             return {state};

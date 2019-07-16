@@ -1,4 +1,3 @@
-import jsonApi from '../api/jsonApi';
 import history from '../history';
 import {storeProducts} from '../api/data';
 import _ from 'lodash';
@@ -24,6 +23,8 @@ export const clickedProduct = (id) => (dispatch) => {
 
 export const addToCart = (id) => (dispatch) => {
     const product = _.filter(storeProducts, { 'id':id});
+
+    product[0].count++;
     
     dispatch({
         type: 'ADD_TO_CART',

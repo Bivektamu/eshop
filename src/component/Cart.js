@@ -14,15 +14,21 @@ class Cart extends React.Component {
 
     renderProduct = () => {
         const a = (this.props.productsInCart);
-        console.log(a);
         const product = a.map((product) => {
-            var {id, title, img} = product;
+            var {id, title, img, count} = product;
             return (
-                <div key={id}>  
-                    <p>quantity: <span></span></p>
+                <div key={id}> 
+                    
                     <p>{title}</p>
                     <img src={img} alt={title} />
-                    <button onClick={() => this.onRemoveBtnClick(id)}>remove from cart</button>
+                    {
+                        count > 0?(<span>{count}</span>): (<span></span>)
+                    }
+
+                    {
+                        count > 0?(<button onClick={() => this.onRemoveBtnClick(id)}>remove from cart</button>): ('')
+                    } 
+                    
                 </div>
             )
         })
