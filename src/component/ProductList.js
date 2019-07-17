@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchProducts, addToCart} from '../actions';
+import Modal from '../Modal';
 
 
 class ProductList extends React.Component {
@@ -66,6 +67,11 @@ class ProductList extends React.Component {
                     <Title name="Our" title="products" />
                     <div className="row">{this.renderProduct()}</div>
                 </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Launch demo modal
+                </button>
+        <Modal  />
+
             </div>
         )
     }
