@@ -15,7 +15,8 @@ export const addToCart = (id)  => {
     var productFound;
     storeProducts.map((product) => {
         if(id === product.id){
-             productFound =  product;
+            product.count++;
+            productFound =  product;
         }
     })
 

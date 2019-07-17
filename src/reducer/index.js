@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import cartReducer from './cart';
 import _ from 'lodash';
 
 const productsReducer = (state = {}, action) => {
@@ -12,29 +13,7 @@ const productsReducer = (state = {}, action) => {
 };
 
 
-
-
-export const cart = (state = {}, action) => {
-
-    switch (action.type) {
-        case 'ADD_TO_CART':
-            console.log(state);
-            return {...state, [action.payload.id]:action.payload};
-            
-        case 'REMOVE_FROM_CART':
-            state = _.omit(state, [action.payload]);
-
-            return {...state, state};
-
-        default:
-            return {state};
-    }
-
-}
-
-
-
 export default combineReducers({
+    cart: cartReducer,
     products: productsReducer,
-    cart: cart,
 });
