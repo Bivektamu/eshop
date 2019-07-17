@@ -25,7 +25,7 @@ class ProductList extends React.Component {
 
     renderProduct ()  {
         const product = this.props.products.map(product => {
-            const {id, img, title, cart} = product;
+            const {id, img, title, inCart} = product;
                 return(
 
                         <ProductWrapper key={product.id} 
@@ -35,7 +35,8 @@ class ProductList extends React.Component {
                                     <Link to={`/product/${id}`}>
                                         <img className="card-img-top"   src={img} alt={title} />
                                     </Link>
-                                    <CartButton className="card-btn" onClick={(e) => this.addToCartClick(e,id)} disabled={cart}>
+                                    {/* {console.log(cart)} */}
+                                    <CartButton className="card-btn btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => this.addToCartClick(e,id)} disabled={inCart}>
                                         <i className="fa fa-cart-plus" ></i>
                                     </CartButton>
                                 </div>
@@ -67,9 +68,9 @@ class ProductList extends React.Component {
                     <Title name="Our" title="products" />
                     <div className="row">{this.renderProduct()}</div>
                 </div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                {/* <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                     Launch demo modal
-                </button>
+                </button> */}
         <Modal  />
 
             </div>
