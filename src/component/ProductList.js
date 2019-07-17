@@ -9,8 +9,14 @@ import Modal from '../Modal';
 
 class ProductList extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state={cartClicked : false, clickedProductId: null};
+    }
+    
     componentDidMount() {
         this.props.fetchProducts();
+        
     }
     componentWillMount() {
         this.props.fetchProducts();
@@ -18,8 +24,8 @@ class ProductList extends React.Component {
     }
 
    
-    addToCartClick = (e,id) => {
-        // e.stopPropagation();
+    addToCartClick = (id) => {
+    this.setState({cartClicked:true});
        return this.props.addToCart(id);
     }
 
@@ -35,14 +41,15 @@ class ProductList extends React.Component {
                                     <Link to={`/product/${id}`}>
                                         <img className="card-img-top"   src={img} alt={title} />
                                     </Link>
-                                    {/* {console.log(cart)} */}
-                                    <CartButton className="card-btn btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => this.addToCartClick(e,id)} disabled={inCart}>
+                                    <CartButton className="card-btn btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter" onClick={() => this.addToCartClick(id)} disabled={inCart}>
                                         <i className="fa fa-cart-plus" ></i>
                                     </CartButton>
                                 </div>
                                 <p>{title}</p>
 
                             </div>
+                            
+
                         </ProductWrapper>
                     )
                 }
@@ -68,10 +75,12 @@ class ProductList extends React.Component {
                     <Title name="Our" title="products" />
                     <div className="row">{this.renderProduct()}</div>
                 </div>
-                {/* <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                    Launch demo modal
-                </button> */}
-        <Modal  />
+
+                { console.log(this.props.products)}
+                { console.log(this.props.clickedProduct)}
+
+                {this.state.cartClicked?(<Modal   />):('')}
+
 
             </div>
         )
@@ -114,9 +123,11 @@ export const CartButton = styled.button`
 
 `;
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    console.log(ownProps);
     return {
         products : Object.values(state.products),
+        // clickedProduct : state.products[ownProps.state.clickedProductId],
     }
 }
 
