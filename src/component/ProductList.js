@@ -37,22 +37,30 @@ class ProductList extends React.Component {
 
     renderProduct ()  {
         const product = this.props.products.map(product => {
-            const {id, img, title, inCart} = product;
+            const {id, img, title, inCart, price} = product;
                 return(
 
                         <ProductWrapper key={product.id} 
                         className="col-9 mx-auto col-md-6 col-lg-3 my-3" >
                             <div className="card">
                                 <div className="img-container p-5">
-                                    <Link to={`/product/${id}`}>
+                                    <Link to={`/product/${id}`} className="">
                                         <img className="card-img-top"   src={img} alt={title} />
                                     </Link>
-                                    <CartButton className="card-btn btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter" onClick={() => this.addToCartClick(id)} disabled={inCart}>
-                                        {inCart?('In Cart'):(<i className="fa fa-cart-plus" ></i>)}
-                                        
+
+                                    <CartButton className="card-btn btn btn-primary" 
+                                            type="button" data-toggle="modal" 
+                                            data-target="#exampleModalCenter" 
+                                            onClick={() => this.addToCartClick(id)} disabled={inCart}>
+                                                
+                                                {inCart?('In Cart'):(<i className="fa fa-cart-plus" ></i>)}
                                     </CartButton>
                                 </div>
-                                <p>{title}</p>
+
+                                <div className="card-footer d-flex justify-content-between">
+                                    <p className="align-self-center mb-0">{title}</p>
+                                    <h5 className="text-blue font-italic mb-0">${price}</h5>
+                                </div>
 
                             </div>
                             
@@ -67,14 +75,61 @@ class ProductList extends React.Component {
     }
 
 
+    renderModal = () => {
+        return (
+            <div className="modal-dialog modal-dialog-centered" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        {
+                            this.props.product[0]? 
+                                (
+                                    <h5 className="modal-title" id="exampleModalCenterTitle">
+                                    {this.props.product[0].title}</h5>
+                                ):
+                                console.log('asdfsdfasdfa')
+                        }
+                        
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" onClick={this.closeModal}>&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="card">
+                            <div className="img-container p-5">
+                                {
+                                    this.props.product[0]? 
+                                        (
+                                            <img className="card-img-top" 
+                                            src={this.props.product[0].img} 
+                                            alt={this.props.product[0].title} />
+                                        ):
+                                        console.log('asdfsdfasdfa')
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-footer">
+                        
+                        <button type="button" className="btn btn-secondary" 
+                            data-dismiss="modal" onClick={this.closeModal}>Close</button>
+                        <Link to="/cart/">
+                            <button type="button" className="btn btn-primary">Check Out</button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+                
+        )
+    }
+
     render() {
         
         if(!this.props.products) {
             return 'Loading';
         }
 
-        if(this.props.clickedProduct[0]) {
-            console.log(this.props.clickedProduct[0].title);
+        if(this.props.product[0]) {
+            console.log(this.props.product[0].title);
         }
 
         
@@ -92,25 +147,7 @@ class ProductList extends React.Component {
                     isOpen={this.state.showModal}
                     contentLabel="Minimal Modal Example"
                     >
-                        <div className="modal-dialog modal-dialog-centered" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    {console.log(this.props.clickedProduct[0])}
-                                    {/* <h5 className="modal-title" id="exampleModalCenterTitle">{this.props.clickedProduct[0].title}</h5> */}
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" onClick={this.closeModal}>&times;</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">
-                                    ...
-                                </div>
-                                <div className="modal-footer">
-                                    
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.closeModal}>Close</button>
-                                    <button type="button" className="btn btn-primary">G changes</button>
-                                </div>
-                            </div>
-                        </div>
+                        {this.renderModal()}
                 </ReactModal>
 
             </div>
@@ -120,13 +157,24 @@ class ProductList extends React.Component {
 
 
 export const ProductWrapper = styled.div`
-    cursor:pointer;
     .img-container {
         position: relative;
         overflow: hidden;
-        &:hover button{
+        cursor:pointer;
 
-            transform: none;
+        img {
+            transition: all 0.3s ease;
+        }
+
+
+        &:hover {
+            img {
+                transform:scale(1.2);
+            }
+            button{
+
+                transform: none;
+            }
         }
     }
 
@@ -146,7 +194,7 @@ export const CartButton = styled.button`
     right:0;
     bottom:0;
     transform: translate(45px, 54px);
-    transition: all 0.6s ease;
+    transition: all 0.3s ease;
 
     &:hover {
         color:var(--mainBlue);
@@ -157,7 +205,7 @@ export const CartButton = styled.button`
 const mapStateToProps = (state) => {
     return {
         products : Object.values(state.products),
-        clickedProduct : Object.values(state.clickedProduct),
+        product : Object.values(state.product),
     }
 }
 

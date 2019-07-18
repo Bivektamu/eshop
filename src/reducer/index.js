@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import cartReducer from './cart';
-import clickedProduct from './clickedProduct';
 import _ from 'lodash';
+import fetchProduct from './fetchProduct';
 
 const productsReducer = (state = {}, action) => {
     switch (action.type) {
@@ -16,6 +16,6 @@ const productsReducer = (state = {}, action) => {
 
 export default combineReducers({
     cart: cartReducer,
-    clickedProduct : clickedProduct,
+    product : fetchProduct,
     products: productsReducer,
 });

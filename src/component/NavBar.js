@@ -17,14 +17,18 @@ class NavBar extends React.Component {
                     </li>
                 </ul>
 
-                <Link to="/cart/" className="ml-auto">
-                    <ButtonContainer>
-                        <span className="mr-2">
-                            <i className="fa fa-cart-plus"></i>
-                        </span>
-                        My Cart
-                    </ButtonContainer>
-                </Link>
+                <div className="ml-auto">
+                    <ButtonContainer className="mr-3">Sign In</ButtonContainer>
+                    <Link to="/cart/" className="">
+                        <ButtonContainer>
+                            <span className="mr-2">
+                                <i className="fa fa-cart-plus"></i>
+                            </span>
+                            My Cart
+                        </ButtonContainer>
+                    </Link>
+                </div>
+                
 
                 
             </NavWrapper>

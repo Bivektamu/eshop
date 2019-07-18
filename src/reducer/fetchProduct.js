@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const clickedProduct = (state = {}, action) => {
+const fetchProduct = (state = {}, action) => {
 
     switch (action.type) {
         case 'FETCH_PRODUCT':
@@ -14,4 +14,4 @@ const clickedProduct = (state = {}, action) => {
 
 }
 
-export default clickedProduct;
+export default fetchProduct;
