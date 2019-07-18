@@ -10,6 +10,21 @@ export const fetchProducts = () => (dispatch) => {
     });
 }
 
+export const fetchProduct = (id)  => {
+
+    var productFound;
+    storeProducts.map((product) => {
+        if(id === product.id){
+            productFound =  product;
+        }
+    })
+
+return {
+        type: 'FETCH_PRODUCT',
+        payload: productFound
+    };
+}
+
 export const addToCart = (id)  => {
     
     var productFound;

@@ -10,10 +10,14 @@ import {Provider} from 'react-redux';
 import reducers from './reducer';
 import thunk from 'redux-thunk';
 import history from './history';
+import ReactModal from 'react-modal';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store=createStore(reducers, composeEnhancers ( applyMiddleware(thunk)) );
+
+ReactModal.setAppElement('#root');
+
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
