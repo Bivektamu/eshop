@@ -43,6 +43,14 @@ export const addToCart = (id)  => {
     }
 }
 
+export const addQuantity = (id)  => {
+    
+    return {
+        type: 'ADD_QUANTITY',
+        payload: id
+    }
+}
+
 export const removeFromCart = (id) => {
     return {
         type: 'REMOVE_FROM_CART',

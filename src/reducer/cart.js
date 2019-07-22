@@ -16,6 +16,12 @@ const cartReducer = (state = {}, action) => {
             
             return state;
 
+        case 'ADD_QUANTITY':
+            console.log(action.payload);
+            // state.
+            console.log(state[action.payload].count++);
+            return state;
+
         default:
             return state;
     }

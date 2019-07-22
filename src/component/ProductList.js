@@ -1,10 +1,12 @@
 import React from 'react';
 import Title from './Title';
-import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchProducts, addToCart, fetchProduct} from '../actions';
-// import Modal from '../Modal';
+import {ProductWrapper, CartButton} from '../styledComponent.js';
+import {ButtonContainer} from '../styledComponent.js';
+import Modal from './Modal';
+
 import ReactModal from 'react-modal';
 
 
@@ -75,64 +77,13 @@ class ProductList extends React.Component {
     }
 
 
-    renderModal = () => {
-        return (
-            <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        {
-                            this.props.product[0]? 
-                                (
-                                    <h5 className="modal-title" id="exampleModalCenterTitle">
-                                    {this.props.product[0].title}</h5>
-                                ):
-                                console.log('asdfsdfasdfa')
-                        }
-                        
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" onClick={this.closeModal}>&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        <div className="card">
-                            <div className="img-container p-5">
-                                {
-                                    this.props.product[0]? 
-                                        (
-                                            <img className="card-img-top" 
-                                            src={this.props.product[0].img} 
-                                            alt={this.props.product[0].title} />
-                                        ):
-                                        console.log('asdfsdfasdfa')
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <div className="modal-footer">
-                        
-                        <button type="button" className="btn btn-secondary" 
-                            data-dismiss="modal" onClick={this.closeModal}>Close</button>
-                        <Link to="/cart/">
-                            <button type="button" className="btn btn-primary">Check Out</button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-                
-        )
-    }
+    
 
     render() {
         
         if(!this.props.products) {
             return 'Loading';
         }
-
-        if(this.props.product[0]) {
-            console.log(this.props.product[0].title);
-        }
-
-        
 
         return(
             <div className="py-5">
@@ -147,7 +98,9 @@ class ProductList extends React.Component {
                     isOpen={this.state.showModal}
                     contentLabel="Minimal Modal Example"
                     >
-                        {this.renderModal()}
+                        <Modal product = {this.props.product[0]}
+                                closeModal = {this.closeModal} 
+                        />
                 </ReactModal>
 
             </div>
@@ -156,51 +109,7 @@ class ProductList extends React.Component {
 }
 
 
-export const ProductWrapper = styled.div`
-    .img-container {
-        position: relative;
-        overflow: hidden;
-        cursor:pointer;
 
-        img {
-            transition: all 0.3s ease;
-        }
-
-
-        &:hover {
-            img {
-                transform:scale(1.2);
-            }
-            button{
-
-                transform: none;
-            }
-        }
-    }
-
-
-`;
-
-export const CartButton = styled.button`
-    position:absolute;
-    font-size:1.3rem;
-    padding: 10px;
-    background:var(--lightBlue);
-    color:var(--mainWhite);
-    outline: none;
-    border:none;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    right:0;
-    bottom:0;
-    transform: translate(45px, 54px);
-    transition: all 0.3s ease;
-
-    &:hover {
-        color:var(--mainBlue);
-    }
-
-`;
 
 const mapStateToProps = (state) => {
     return {

@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {removeFromCart} from '../actions'
+import {removeFromCart, addQuantity} from '../actions'
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import CartColumn from './CartColumn';
 
 class Cart extends React.Component {
     constructor() {
@@ -22,6 +23,11 @@ class Cart extends React.Component {
         
     }
 
+    addQuantity = (id) => {
+        return this.props.addQuantity(id)
+        // return (<p>One more added</p>);
+    }
+
     renderProduct = () => {
         const a = (this.props.productsInCart);
         if(a < 1) {
@@ -35,15 +41,26 @@ class Cart extends React.Component {
                 <div key={id}> 
                     
                     <p>{title}</p>
-                    <img src={img} alt={title} />
                     {
-                        count > 0?(<span>{count}</span>): (<span></span>)
-                    }
+                        count > 0?
+                        (
+                            <div>
+                                <span className="mr-2">Quantity:</span>
+                                <button >-</button>
+                                <span className="ml-2 mr-2">{count}</span>
+                                <button onClick={() => this.addQuantity(id)}>+</button>
 
+                            </div>
+                        ): (<span></span>)
+                    }
+<br />
                     {
                         // count > 0?(<button onClick={() => this.onRemoveBtnClick(id)}>remove from cart</button>): ('')
                         count > 0?(<button onClick={() => this.setState({showModal: true, productId:id})}>remove from cart</button>): ('')
                     } 
+
+                    <img src={img} alt={title} />
+
                     
                 </div>
             )
@@ -89,6 +106,10 @@ class Cart extends React.Component {
         )
     }
 
+    showModal = (id) => {
+            this.setState({showModal: true, productId:id})
+    }
+
     render() {
 
         if(!this.props.productsInCart) {
@@ -103,7 +124,11 @@ class Cart extends React.Component {
                         ):('')
                 }
 
-                {this.renderProduct()}
+            <CartColumn product={this.props.productsInCart} 
+                        addQuantity = {(id) => this.addQuantity(id)} 
+                        showModal = {(id) => this.showModal(id)} />
+
+                {/* {this.renderProduct()} */}
                 <ReactModal 
                     className="modal"
                     isOpen={this.state.showModal}
@@ -122,10 +147,10 @@ export const DeleteInfo = styled.h6 `
 
 
 const mapStateToProps = (state) => {
-    console.log(state.cart);
+    // console.log(state.cart);
     return {
         productsInCart : Object.values(state.cart)
     }
 }
 
-export default connect(mapStateToProps, {removeFromCart}) (Cart);
+export default connect(mapStateToProps, {removeFromCart, addQuantity}) (Cart);

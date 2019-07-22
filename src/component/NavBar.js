@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import logo from "../logo.svg";
+import {Logo, NavWrapper, ButtonContainer} from '../styledComponent.js';
 import styled from 'styled-components';
 
 class NavBar extends React.Component {
@@ -36,26 +37,5 @@ class NavBar extends React.Component {
     }
 }
 
-const Logo = styled.img`
-    width: 100px;
-`;
-
-const ButtonContainer = styled.button `
-    font-size:1.2rem;
-    background: transparent;
-    outline: none;
-    border: 2px solid var(--lightBlue);
-    padding: 5px 15px;
-    color:var(--lightBlue);
-`;
-
-const NavWrapper = styled.nav `
-    background: var(--mainBlue);
-    .nav-link {
-        font-size: 1.3rem;
-        color:var(--mainWhite)!important;
-        text-transform: capitalize;
-    }
-`;
 
 export default NavBar;
