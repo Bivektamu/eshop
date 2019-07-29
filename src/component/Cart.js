@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {removeFromCart, addQuantity} from '../actions'
+import {removeFromCart, addQuantity, removeQuantity, clearCart} from '../actions'
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
 import CartColumn from './CartColumn';
@@ -12,20 +12,23 @@ class Cart extends React.Component {
 
     }
     componentDidMount() {
-        // this.props.product(this.props.productsInCartId);
-
+        this.renderProduct();
     }
 
 
     onRemoveBtnClick = () => {
         this.setState({showModal: false, showInfo:true});
+        if(this.state.productId === 0) {
+            console.log('hey');
+            return this.props.clearCart();
+        }
         this.props.removeFromCart(this.state.productId);
         
     }
 
     addQuantity = (id) => {
+        
         return this.props.addQuantity(id)
-        // return (<p>One more added</p>);
     }
 
     renderProduct = () => {
@@ -70,11 +73,13 @@ class Cart extends React.Component {
     }
 
     renderModal =() => {
+        const title =(this.state.productId > 0)?"Delete Product":"Clear Cart";
+        const content = (this.state.productId > 0)? "Are you sure you want to delete?":"Are you sure you want to clear cart?";
         return(
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                    Delete Product
+                    {title}
                         
                         
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -82,12 +87,7 @@ class Cart extends React.Component {
                         </button>
                     </div>
                     <div className="modal-body">
-                        Are you sure you want to delete?
-                    {/* {
-                            this.props.product[0]? 
-                                (<h5 className="modal-title" id="exampleModalCenterTitle">{this.props.product[0].title}</h5>):
-                                console.log('asdfsdfasdfa')
-                        } */}
+                        {content}
                     </div>
                     <div className="modal-footer">
                         
@@ -125,7 +125,8 @@ class Cart extends React.Component {
                 }
 
             <CartColumn product={this.props.productsInCart} 
-                        addQuantity = {(id) => this.addQuantity(id)} 
+                        addQuantity = {(id) => this.props.addQuantity(id)} 
+                        removeQuantity = {(id) => this.props.removeQuantity(id)} 
                         showModal = {(id) => this.showModal(id)} />
 
                 {/* {this.renderProduct()} */}
@@ -153,4 +154,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {removeFromCart, addQuantity}) (Cart);
+export default connect(mapStateToProps, {removeFromCart, addQuantity, removeQuantity, clearCart}) (Cart);

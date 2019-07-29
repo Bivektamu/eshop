@@ -17,10 +17,19 @@ const cartReducer = (state = {}, action) => {
             return state;
 
         case 'ADD_QUANTITY':
-            console.log(action.payload);
-            // state.
-            console.log(state[action.payload].count++);
+            state[action.payload].count++
+            state[action.payload].total = state[action.payload].count * state[action.payload].price;
             return state;
+
+        case 'REMOVE_QUANTITY':
+            state[action.payload].count--
+            state[action.payload].total = state[action.payload].count * state[action.payload].price;
+            return state;
+
+        case 'CLEAR_CART':
+            state = action.payload;
+            return state;
+            
 
         default:
             return state;
