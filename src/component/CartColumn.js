@@ -20,9 +20,9 @@ var subTotal = 0;
             const {id, title, img, count, price, total} = product;
             subTotal = subTotal + total;
             return (
-                <div key={id} className="row"> 
+                <div className="row my-5">
                     <div className="col-10 mx-auto col-lg-2">
-                        <img className="img-fluid" src={img} alt={title} />
+                        <img className="img-fluid cart-img" src={img} alt={title} />
                     </div>
                     <div className="col-10 mx-auto col-lg-2">
                         <p className="text-uppercase">{title}</p>
@@ -54,36 +54,37 @@ var subTotal = 0;
 
     }
 
-    if(props.product.length < 1){
-        return (
-            <h1 className="py-5 text-center">There are no products</h1>
-        )
-    }
     return (
 
-        <div  className="container-fluid text-center d-noone d-lg-block"> 
-            <div className="row">
-                <div className="col-10 mx-auto col-lg-2">
-                    <p className="text-uppercase">products</p>
-                </div>
-                <div className="col-10 mx-auto col-lg-2">
-                    <p className="text-uppercase">name of product</p>
-                </div>
-                <div className="col-10 mx-auto col-lg-2">
-                    <p className="text-uppercase">price</p>
-                </div>
-                <div className="col-10 mx-auto col-lg-2">
-                    <p className="text-uppercase">Quantity</p>
-                </div>
-                <div className="col-10 mx-auto col-lg-2">
-                    <p className="text-uppercase">remove</p>
-                </div>
-                <div className="col-10 mx-auto col-lg-2">
-                    <p className="text-uppercase">total</p>
-                </div>
-            </div>
+        <React.Fragment>
 
-            {renderProduct(props.product)}
+        <div className="container d-none d-lg-block">
+
+            <div className="row">
+                    <div className="col-10 mx-auto col-lg-2">
+                        <p className="text-uppercase font-weight-bold">products</p>
+                    </div>
+                    <div className="col-10 mx-auto col-lg-2">
+                        <p className="text-uppercase font-weight-bold">name of product</p>
+                    </div>
+                    <div className="col-10 mx-auto col-lg-2">
+                        <p className="text-uppercase font-weight-bold">price</p>
+                    </div>
+                    <div className="col-10 mx-auto col-lg-2">
+                        <p className="text-uppercase font-weight-bold">Quantity</p>
+                    </div>
+                    <div className="col-10 mx-auto col-lg-2">
+                        <p className="text-uppercase font-weight-bold">remove</p>
+                    </div>
+                    <div className="col-10 mx-auto col-lg-2">
+                        <p className="text-uppercase font-weight-bold">total</p>
+                    </div>
+            </div>
+        </div>
+        <div className="container">
+                {renderProduct(props.product)}
+        </div>
+        <div className="container">
 
             <div className="row">
                 <div className="col-10 mt-2 ml-sm-5  ml-md-auto col-sm-8 text-capitalize text-right">
@@ -98,10 +99,9 @@ var subTotal = 0;
                     <p>Total: ${subTotal - subTotal / 10}</p>
                 </div>
             </div>
-
-            
         </div>
             
+        </React.Fragment> 
     )
 }
 

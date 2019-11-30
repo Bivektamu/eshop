@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import {ButtonContainer} from '../styledComponent.js';
+import {ButtonContainer, CartButton} from '../styledComponent.js';
 
 const Modal = (props) => {
     console.log(props);
@@ -35,14 +35,14 @@ const Modal = (props) => {
                 </div>
                 <div className="modal-footer">
                     
-                    <ButtonContainer type="button" className="btn btn-secondary" 
+                    <ButtonContainer type="button" className="btn" 
                         data-dismiss="modal" onClick={props.closeModal}>
                             Continue Shopping
                     </ButtonContainer>
                     <Link to="/cart/">
-                        <ButtonContainer type="button" cart className="btn btn-primary">
+                        <CartButton type="button" cart className="btn btn-primary">
                             Go To Cart
-                        </ButtonContainer>
+                        </CartButton>
                     </Link>
                 </div>
             </div>

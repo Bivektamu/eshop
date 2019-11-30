@@ -1,0 +1,130 @@
+:root {
+    --mainBlue: #474EA9;
+    --lightBlue: #3D43A5;
+    --mainWhite : #f3f3f3;
+    --mainDark : #232528;
+    --mainBlack: #000000;
+    --mainYellow: #ffa400;
+}
+
+html {
+    font-size: 14px;
+}
+body {
+    background: var(--mainWhite);
+    color: var(--mainDark);
+    font-family: 'Glegoo', serif;
+    font-size: 1rem;
+}
+
+.nav-link {
+    font-size: 1rem!important;
+}
+.text-title {
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+}
+
+.text-blue {
+    color: var(--mainBlue);
+}
+
+.modal {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 1;
+    background: rgba(0,0,0,0.5);
+}
+.nav-link {
+    letter-spacing: 2px;
+}
+
+.banner {
+    width: 100%;
+    height: 30rem;
+    background: var(--mainBlack);
+    position: relative;
+    overflow: hidden;
+
+    span.design1 {
+        background: #474EA9;
+        width: 300px;
+        height: 1000px;
+        transform: rotate(-52deg);
+        transform-origin:170px;
+        position: absolute;
+        &:after {
+            background: #3D43A5;
+            content: '';
+            width: 120px;
+            height: 1500px;
+            top:-250px;
+            left: 250px;
+            position: absolute;
+        }
+    }
+
+    span.design2, span.design3 {
+        width: 0; 
+        height: 0; 
+        border-left: 108px solid transparent;
+        border-right: 491px solid transparent;
+        border-bottom: 284px solid #FF5064;
+        position: absolute;
+        transform: rotate(30deg);
+        left: 23px;
+        top: -146px;
+        position: absolute;
+    }
+
+    span.design3 {
+        transform: rotate(53deg);
+        left: 209px;
+        top: -303px;
+        border-left: 176px solid transparent;
+    }
+
+    
+    img {
+        position: absolute;
+        left: 150px;
+        top:100px;
+        bottom: 0;
+        margin: auto;
+    }
+    
+    h2 {
+        color: var(--mainBlack);
+        position: absolute;
+        right: 260px;
+        bottom: 30px;
+        padding: 20px 40px;
+        background: rgba(255, 255, 255, 0.3);
+        width: 340px;
+        text-transform: uppercase;
+        transform: rotate(90deg);
+        transform-origin: right bottom;
+    
+
+    }
+}
+
+i.fa.fa-trash.text-blue {
+    cursor: pointer;
+    transition: all .15s ease;
+    &:hover {
+        color: #dc3545;
+    }
+}
+
+.cart-img {
+    width: 5rem;
+    height: 5rem;
+}
+
+@media screen and (max-width: 1100px) {
+    html {
+        font-size: 14px;
+    }
+}

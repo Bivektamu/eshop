@@ -76,7 +76,6 @@ export const removeQuantity = (id)  => {
 }
 
 export const clearCart = () => {
-    history.push("/");
     storeProducts.map(product => {
         if(product.count > 0){
             product.count = 0;

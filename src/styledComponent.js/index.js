@@ -6,21 +6,39 @@ export const Logo = styled.img`
 `;
 
 export const ButtonContainer = styled.button `
-    font-size:1.2rem;
-    background: transparent;
+    font-size:0.8rem;
+    padding: 5px 10px;
+    background:none;
     outline: none;
-    border: 2px solid var(--lightBlue);
-    border-color: ${props => 
-    props.cart? "var(--mainYellow)" : "var(--lightBlue)"};
-    padding: 5px 15px;
-    color: ${props => 
-        props.cart ? "var(--mainYellow)" : "var(--lightBlue)"
-    };
-    var(--lightBlue);
+    border:1px solid;
+    transition: all 0.3s ease;
+    color:var(--lightBlue);
+    &:hover {
+        color:var(--mainWhite);
+        background: var(--lightBlue);
+        border-color:var(--lightBlue);
+    }
+`;
+
+export const CartButton = styled.button`
+    font-size:0.8rem;
+    padding: 5px 10px;
+    background:none;
+    color:#FF5064;
+    outline: none;
+    border:1px solid;
+    transition: all 0.3s ease;
+    &:hover, &:disabled {
+        color:var(--mainWhite);
+        background: #FF5064;
+        border-color:#FF5064;
+    }
+    
+
 `;
 
 export const NavWrapper = styled.nav `
-    background: var(--mainBlue);
+    background: #474EA9;
     .nav-link {
         font-size: 1.3rem;
         color:var(--mainWhite)!important;
@@ -53,23 +71,3 @@ export const ProductWrapper = styled.div`
 
 `;
 
-export const CartButton = styled.button`
-    position:absolute;
-    font-size:1.3rem;
-    padding: 10px;
-    background:var(--lightBlue);
-    color:var(--mainWhite);
-    outline: none;
-    border:none;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    right:0;
-    bottom:0;
-    transform: translate(45px, 54px);
-    transition: all 0.3s ease;
-
-    &:hover {
-        color:var(--mainBlue);
-    }
-
-`;
