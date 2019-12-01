@@ -1,18 +1,18 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import logo from "../logo.svg";
-import {Logo, NavWrapper, ButtonContainer} from '../styledComponent.js';
-import styled from 'styled-components';
+import logo from "../logo.png";
+import {NavWrapper} from '../styledComponent.js';
 
 class NavBar extends React.Component {
     render() {
+        console.log(logo);
         return(
             <React.Fragment>
                 <div className="container-fluid bg-white">
 
                     <div className="row">
                         <div className="col-10 mx-auto my-5 text-center text-title title">
-                            <span className="">MOBILE STORE</span>
+                            <span className=""><img src={logo} id="logo" alt="logo" />MOBILE STORE</span>
                         </div>
                     </div>
                 </div>

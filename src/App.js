@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import NavBar from './component/NavBar';
 import ProductList from './component/ProductList';
