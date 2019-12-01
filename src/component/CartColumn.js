@@ -1,5 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import PayPalBtn from './PayPalBtn';
+import history from '../history';
+
 const CartColumn = (props) => {
     
 
@@ -97,9 +99,11 @@ var subTotal = 0;
                     <p>subTotal : ${subTotal}</p>
                     <p>Tax: ${subTotal / 10}</p>
                     <p>Total: ${subTotal - subTotal / 10}</p>
+                    <PayPalBtn total={subTotal - subTotal/10} history={history} clearCart={() =>props.showModal(0)} />
+
                 </div>
             </div>
-        </div>
+        </div> 
             
         </React.Fragment> 
     )

@@ -158,12 +158,13 @@ class Cart extends React.Component {
                     </div>
                 </div>
 
-            <CartColumn product={this.props.productsInCart} 
+                <CartColumn product={this.props.productsInCart} 
                         addQuantity = {(id) => this.props.addQuantity(id)} 
                         removeQuantity = {(id) => this.props.removeQuantity(id)} 
                         showModal = {(id) => this.showModal(id)} />
 
-                {/* {this.renderProduct()} */}
+              
+
                 <ReactModal 
                     className="modal"
                     isOpen={this.state.showModal}
