@@ -23,29 +23,29 @@ var subTotal = 0;
             subTotal = subTotal + total;
             return (
                 <div className="row my-5">
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <img className="img-fluid cart-img" src={img} alt={title} />
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
-                        <p className="text-uppercase">{title}</p>
+                    <div className="col-10 mx-auto col-lg-2 text-center">
+                        <p className="text-uppercase"><span className="d-lg-none font-weight-bold text-uppercase">Product:&nbsp;</span>{title}</p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
-                        <p className="text-uppercase">{price}</p>
+                    <div className="col-10 mx-auto col-lg-2 text-center">
+                        <p className="text-uppercase"><span className="d-lg-none font-weight-bold text-uppercase">price: </span>{price}</p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <p className="text-uppercase">
                             <button onClick={() =>removeQuantity(id, count)}>-</button>
                             <span className="ml-2 mr-2">{count}</span>
                             <button onClick={() => props.addQuantity(id)}>+</button>
                         </p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <p className="text-uppercase">
                             <i className="fa fa-trash text-blue" onClick={() => props.showModal(id)}></i>
                         </p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
-                        <p className="text-uppercase">{total}</p>
+                    <div className="col-10 mx-auto col-lg-2 text-center">
+                        <p className="text-uppercase"><span className="d-lg-none font-weight-bold text-uppercase">item total: </span>{total}</p>
                     </div>
 
                     
@@ -63,22 +63,22 @@ var subTotal = 0;
         <div className="container d-none d-lg-block">
 
             <div className="row">
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <p className="text-uppercase font-weight-bold">products</p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <p className="text-uppercase font-weight-bold">name of product</p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <p className="text-uppercase font-weight-bold">price</p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <p className="text-uppercase font-weight-bold">Quantity</p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <p className="text-uppercase font-weight-bold">remove</p>
                     </div>
-                    <div className="col-10 mx-auto col-lg-2">
+                    <div className="col-10 mx-auto col-lg-2 text-center">
                         <p className="text-uppercase font-weight-bold">total</p>
                     </div>
             </div>

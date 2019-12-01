@@ -11,7 +11,7 @@ const Hero = (props) => {
             <span className="design2"></span>
             <span className="design3"></span>
             <img src={props.bannerImg.img} alt={props.bannerImg.title} />
-            <h2>{props.caption}</h2>
+            <h2>HTC Desire 626s<br/>On Huge Sale</h2>
 
         </div>
     );

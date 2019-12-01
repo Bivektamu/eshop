@@ -5,7 +5,7 @@ import { PayPalButton } from 'react-paypal-button'
 
  const PayPalBtn = (props) =>{
   const paypalOptions = {
-    clientId: 'AaISI6Ql_6l6iSNEGfJioUdsiMg4IOxIyag3dIyfSpP5YpKdrh4hzS4DjLnMfAnHoKRERXqZtOa_IcUl',
+    clientId: process.env.REACT_APP_CLIENT_ID,
     intent: 'capture'
   }
  

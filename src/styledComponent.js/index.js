@@ -41,7 +41,7 @@ export const NavWrapper = styled.nav `
     background: #474EA9;
     .nav-link {
         font-size: 1.3rem;
-        color:var(--mainWhite)!important;
+        color:var(--mainWhite);
         text-transform: capitalize;
     }
 `;

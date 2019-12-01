@@ -94,7 +94,7 @@ class ProductList extends React.Component {
         return(
             <div className="">
                 <div className="container-fluid pl-0 pr-0">
-                    <Hero bannerImg = {this.props.products[4]} caption="HTC Desire, Special Offers" />
+                    <Hero bannerImg = {this.props.products[4]} />
                 </div>
                 <div className="container">
                     <div className="row ">

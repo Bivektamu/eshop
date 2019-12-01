@@ -76,7 +76,23 @@ class Cart extends React.Component {
 
     renderModal =() => {
         const title =(this.state.productId > 0)?"Delete Product":"Clear Cart";
-        const content = (this.state.productId > 0)? "Are you sure you want to delete?":"Are you sure you want to clear cart?";
+        console.log(this.props.productsInCart);
+
+        const productTitle = this.props.productsInCart.map((product) => {
+
+            if(this.state.productId === product.id)
+                return product.title;
+        });
+
+        console.log('title'+productTitle);
+
+        if(this.state.productId === 0) {
+            var content ="Are you sure you want to clear cart ?";
+        }
+        else {
+            var content="Are you sure you want to delete "+productTitle+" from cart ?";
+        }
+
         return(
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
