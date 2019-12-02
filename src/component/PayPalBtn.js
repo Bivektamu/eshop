@@ -1,6 +1,8 @@
 import React from 'react';
 import { PayPalButton } from 'react-paypal-button'
- 
+import {connect} from 'react-redux';
+import {clearCart} from '../actions'
+
 // const CartColumn = (props) => {
 
  const PayPalBtn = (props) =>{
@@ -18,7 +20,8 @@ import { PayPalButton } from 'react-paypal-button'
 
   const successMessage  = () => {
     props.history.push('/');
-    return props.clearCart();
+    props.clearCart();
+
   }
 
   
@@ -37,4 +40,12 @@ import { PayPalButton } from 'react-paypal-button'
   )
 }
 
-export default PayPalBtn;
+
+const mapStateToProps = (state) => {
+  // console.log(state.cart);
+  return {
+      productsInCart : Object.values(state.cart)
+  }
+}
+
+export default connect(mapStateToProps, {clearCart}) (PayPalBtn);
